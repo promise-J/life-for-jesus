@@ -1,0 +1,107 @@
+@import 'tailwindcss';
+
+/* Visual identity: adire indigo + harmattan gold, chunky "sticker" UI with hard offset shadows. */
+@theme {
+  --font-display: 'Baloo 2', 'Nunito', system-ui, sans-serif;
+  --font-body: 'Nunito', system-ui, sans-serif;
+  --color-indigo-night: #141a4a;
+  --color-indigo: #1d2462;
+  --color-indigo-soft: #2c3787;
+  --color-adire: #3b4aa8;
+  --color-gold: #f2b632;
+  --color-gold-deep: #d18f12;
+  --color-laterite: #c2452d;
+  --color-leaf: #23875a;
+  --color-paper: #fdf6e3;
+  --color-sand: #f3e2bd;
+  --color-ink: #161a3a;
+  --color-mist: #c9cdea;
+}
+
+:root {
+  --ui-scale: 1;
+  color-scheme: light;
+}
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  background: var(--color-indigo-night);
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+body {
+  font-size: calc(16px * var(--ui-scale));
+}
+
+/* A hand-made adire-style pattern used behind menus. */
+.adire-bg {
+  background-color: var(--color-indigo);
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(201, 205, 234, 0.13) 0 7px, transparent 8px),
+    radial-gradient(circle at 75% 75%, rgba(201, 205, 234, 0.13) 0 7px, transparent 8px),
+    repeating-linear-gradient(45deg, rgba(201, 205, 234, 0.06) 0 2px, transparent 2px 22px),
+    repeating-linear-gradient(-45deg, rgba(201, 205, 234, 0.06) 0 2px, transparent 2px 22px);
+  background-size: 44px 44px, 44px 44px, auto, auto;
+}
+
+.sticker {
+  border: 3px solid var(--color-ink);
+  box-shadow: 4px 4px 0 var(--color-ink);
+}
+.sticker-sm {
+  border: 2px solid var(--color-ink);
+  box-shadow: 2px 2px 0 var(--color-ink);
+}
+.btn {
+  font-family: var(--font-display);
+  font-weight: 700;
+  border: 3px solid var(--color-ink);
+  box-shadow: 3px 3px 0 var(--color-ink);
+  border-radius: 14px;
+  padding: 0.55rem 1.1rem;
+  line-height: 1.2;
+  transition: transform 80ms ease, box-shadow 80ms ease;
+  cursor: pointer;
+}
+.btn:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--color-ink);
+}
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.btn-gold { background: var(--color-gold); color: var(--color-ink); }
+.btn-paper { background: var(--color-paper); color: var(--color-ink); }
+.btn-indigo { background: var(--color-adire); color: var(--color-paper); }
+.btn-leaf { background: var(--color-leaf); color: white; }
+.btn-red { background: var(--color-laterite); color: white; }
+:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 2px;
+}
+.scroll-thin { scrollbar-width: thin; scrollbar-color: var(--color-mist) transparent; }
+
+.scripture-card {
+  background: #fffdf5;
+  border-left: 6px solid var(--color-gold);
+  font-family: Georgia, 'Times New Roman', serif;
+  line-height: 1.65;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+.reduced-motion *, .reduced-motion *::before, .reduced-motion *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+
+@keyframes pop-in { from { transform: scale(0.94); opacity: 0; } to { transform: none; opacity: 1; } }
+.pop-in { animation: pop-in 160ms ease-out; }
+@keyframes toast-in { from { transform: translateY(-8px); opacity: 0; } to { transform: none; opacity: 1; } }
+.toast-in { animation: toast-in 180ms ease-out; }
+@keyframes rays { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.rise { animation: rise 900ms ease-out both; }

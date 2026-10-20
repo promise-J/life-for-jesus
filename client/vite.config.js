@@ -1,0 +1,21 @@
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
+
+export default defineConfig({
+  plugins: [react(), tailwindcss()],
+  server: {
+    port: 5173,
+    proxy: { '/api': { target: process.env.VITE_API_PROXY || 'http://localhost:4000', changeOrigin: false } },
+  },
+  build: {
+    chunkSizeWarningLimit: 1600,
+    rollupOptions: { output: { manualChunks: { phaser: ['phaser'] } } },
+  },
+  test: {
+    environment: 'jsdom',
+    setupFiles: ['./test/setup.js'],
+    include: ['test/**/*.test.{js,jsx}'],
+    css: false,
+  },
+});

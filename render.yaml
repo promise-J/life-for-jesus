@@ -1,0 +1,20 @@
+# Render Blueprint: one web service runs the API and serves the built game.
+# In Render: New → Blueprint → pick this repo. You'll be asked for MONGO_URL.
+services:
+  - type: web
+    name: life-for-jesus
+    runtime: node
+    plan: free
+    # --include=dev: Vite and Tailwind are devDependencies and are needed to build the client.
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: "22"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: MONGO_URL
+        sync: false

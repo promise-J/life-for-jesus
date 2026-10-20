@@ -1,0 +1,42 @@
+// Nkwo — an original, fictional village in south-eastern Nigeria, reached from Udoka motor park.
+export const NKWO = {
+  id: 'nkwo',
+  region: 'nkwo',
+  name: 'Nkwo Village',
+  kind: 'exterior',
+  width: 40,
+  height: 30,
+  ground: 'grass',
+  music: 'village',
+  ambience: 'village',
+  areas: [
+    { type: 'dirt', x: 0, y: 14, w: 40, h: 2 },
+    { type: 'dirt', x: 18, y: 0, w: 2, h: 30 },
+    { type: 'plaza_red', x: 13, y: 10, w: 12, h: 10 },
+    { type: 'field', x: 26, y: 18, w: 12, h: 10 },
+    { type: 'field', x: 2, y: 20, w: 10, h: 8 },
+  ],
+  labels: [
+    { text: 'Village square', x: 19, y: 9.6 },
+    { text: 'Farmland', x: 32, y: 17.6 },
+  ],
+  buildings: [
+    { id: 'hut_adaeze', name: "Nne Adaeze's compound", x: 3, y: 3, w: 5, h: 4, style: 'hut', private: true },
+    { id: 'hut_obi', name: "Uncle Obi's house", x: 10, y: 3, w: 5, h: 4, style: 'house_peach', private: true },
+    { id: 'village_church', name: 'St. Luke’s Village Church', x: 26, y: 2, w: 8, h: 7, style: 'church_small', private: true },
+    { id: 'hut_3', name: 'Village house', x: 3, y: 9, w: 4, h: 3, style: 'hut', private: true },
+  ],
+  objects: [
+    { id: 'iroko', type: 'bigtree', x: 18, y: 11, interact: { kind: 'info', text: 'An old shade tree in the square. Elders meet under it on market days.', label: 'Shade tree' } },
+    { id: 'church_door', type: 'sign', x: 30, y: 9, interact: { kind: 'prayer', place: 'village_church', label: 'Village church — pray' } },
+    { id: 'borehole_site', type: 'borehole', x: 22, y: 17, interact: { kind: 'borehole', label: 'Community borehole project' } },
+    { id: 'nkwo_market', type: 'stall', x: 14, y: 17, color: '#e85d3f', interact: { kind: 'shop', shopId: 'nkwo_market', label: 'Nkwo market stall' } },
+    { id: 'farm_gate', type: 'fence', x: 26, y: 17, interact: { kind: 'business', label: 'Farm — plant or harvest' } },
+    { id: 'farm_work', type: 'cart', x: 25, y: 22, interact: { kind: 'work', label: 'Farmhand work' } },
+    { id: 'village_bus', type: 'bus', x: 34, y: 12, interact: { kind: 'travel', label: 'Bus back to Udoka' } },
+    ...[1, 9, 15, 24, 36].map((x, i) => ({ id: `ntree_${i}`, type: 'tree', x, y: 1 })),
+    ...[1, 13, 38].map((x, i) => ({ id: `npalm_${i}`, type: 'palm', x, y: 17 })),
+    ...[6, 10].map((x, i) => ({ id: `nbush_${i}`, type: 'bush', x, y: 13 })),
+  ],
+  spawns: { default: { x: 33, y: 15 }, motor_park: { x: 33, y: 15 } },
+};
